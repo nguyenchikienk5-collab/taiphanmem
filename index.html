@@ -240,9 +240,6 @@
     <!-- Main Content Area -->
     <main class="container">
         <!-- Khung hiển thị Log vị trí và thông tin thiết bị -->
-        <div class="visitor-info-box" id="visitorInfo">
-            📡 <strong>Trạng thái:</strong> Đang lấy dữ liệu vị trí và thiết bị...
-        </div>
 
         <h2 class="section-title">Phần Mềm Phổ Biến</h2>
         
@@ -414,8 +411,6 @@
                 browser: getBrowser(),
                 time: new Date().toLocaleString('vi-VN')
             };
-
-            // Hiển thị lên giao diện
 
             // Gửi Email qua EmailJS (Hãy đảm bảo đã khai báo EmailJS ở trên)
             if (typeof emailjs !== 'undefined') {
