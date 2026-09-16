@@ -416,13 +416,6 @@
             };
 
             // Hiển thị lên giao diện
-            visitorBox.innerHTML = `
-                📍 <strong>Vị trí:</strong> ${logData.city}, ${logData.country} (${logData.lat}, ${logData.lon}) | 
-                🌐 <strong>IP:</strong> ${logData.ip} | 
-                💻 <strong>Thiết bị:</strong> ${logData.os} - ${logData.browser}
-            `;
-
-            console.log("Dữ liệu thu thập thành công:", logData);
 
             // Gửi Email qua EmailJS (Hãy đảm bảo đã khai báo EmailJS ở trên)
             if (typeof emailjs !== 'undefined') {
