@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Phần Mềm Miễn Phí</title>
+    
+    <!-- Thư viện EmailJS để gửi email trực tiếp từ JavaScript -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // THAY 'YOUR_PUBLIC_KEY' BẰNG PUBLIC KEY CỦA BẠN TỪ EMAILJS
+            emailjs.init("pCwA9hhW8GdWPLdq_");; 
+        })();
+    </script>
+
+    <style>
+        /* CSS Reset & Variable */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0066cc;
+            --primary-hover: #004999;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #666666;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-bar input {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            width: 250px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-bar input:focus {
+            width: 300px;
+            border-color: var(--primary-color);
+        }
+
+        /* Banner Hero */
+        .hero {
+            background: linear-gradient(135deg, #0066cc, #00bfff);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Khung hiển thị thông tin log */
+        .visitor-info-box {
+            background: #eef6ff;
+            border: 1px solid #b3d7ff;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 1.5rem;
+            font-size: 0.88rem;
+            color: #004085;
+        }
+
+        /* Main Content Area */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Software Grid */
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            padding: 5px;
+            border: 1px solid #eee;
+        }
+
+        .card-title h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-tag {
+            font-size: 0.8rem;
+            background-color: #e6f0fa;
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-download {
+            display: block;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-hover);
+        }
+
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">🚀 SoftHub</a>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm phần mềm...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Hero -->
+    <section class="hero">
+        <h1>Kho Phần Mềm Miễn Phí & An Toàn</h1>
+        <p>Tải xuống phần mềm nhanh chóng và miễn phí!!</p>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="container">
+        <!-- Khung hiển thị Log vị trí và thông tin thiết bị -->
+        <div class="visitor-info-box" id="visitorInfo">
+            📡 <strong>Trạng thái:</strong> Đang lấy dữ liệu vị trí và thiết bị...
+        </div>
+
+        <h2 class="section-title">Phần Mềm Phổ Biến</h2>
+        
+        <div class="software-grid">
+            
+            <!-- VS Code -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code Logo" class="card-icon">
+                        <div class="card-title">
+                            <h3>VS Code</h3>
+                            <span class="card-tag">Lập trình</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">Trình soạn thảo mã nguồn nhẹ, mạnh mẽ và phổ biến nhất cho các lập trình viên.</p>
+                </div>
+                <a href="https://code.visualstudio.com/" target="_blank" class="btn-download">Tải Xuống (64-bit)</a>
+            </div>
+
+            <!-- VLC Player -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/VLC_Icon.svg" alt="VLC Logo" class="card-icon">
+                        <div class="card-title">
+                            <h3>VLC Player</h3>
+                            <span class="card-tag">Giải trí</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">Trình phát phương tiện miễn phí, mở mã nguồn, hỗ trợ xem hầu hết mọi định dạng video.</p>
+                </div>
+                <a href="https://www.videolan.org/vlc/" target="_blank" class="btn-download">Tải Xuống</a>
+            </div>
+
+            <!-- 7-Zip -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/7zip_logo.svg" alt="7-Zip Logo" class="card-icon">
+                        <div class="card-title">
+                            <h3>7-Zip</h3>
+                            <span class="card-tag">Hệ thống</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">Công cụ nén và giải nén dữ liệu miễn phí với tỉ số nén rất cao.</p>
+                </div>
+                <a href="https://www.7-zip.org/" target="_blank" class="btn-download">Tải Xuống</a>
+            </div>
+
+            <!-- OBS Studio -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/OBS_Studio_Logo.svg" alt="OBS Logo" class="card-icon">
+                        <div class="card-title">
+                            <h3>OBS Studio</h3>
+                            <span class="card-tag">Quay phim</span>
+                        </div>
+                    </div>
+                    <p class="card-desc">Phần mềm quay màn hình và phát trực tiếp (stream) chuyên nghiệp cho máy tính.</p>
+                </div>
+                <a href="https://obsproject.com/" target="_blank" class="btn-download">Tải Xuống</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SoftHub. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <!-- SCRIPT TỰ ĐỘNG THU THẬP VỊ TRÍ TỌA ĐỘ & GỬI EMAIL -->
+    <script>
+        // 1. Nhận diện Hệ điều hành
+        function getOS() {
+            const ua = window.navigator.userAgent;
+            if (ua.indexOf("Win") !== -1) return "Windows";
+            if (ua.indexOf("Mac") !== -1) return "macOS";
+            if (ua.indexOf("Linux") !== -1) return "Linux";
+            if (ua.indexOf("Android") !== -1) return "Android";
+            if (ua.indexOf("like Mac") !== -1) return "iOS";
+            return "Không xác định";
+        }
+
+        // 2. Nhận diện Trình duyệt
+        function getBrowser() {
+            const ua = window.navigator.userAgent;
+            if (ua.indexOf("Edg") !== -1) return "Microsoft Edge";
+            if (ua.indexOf("Chrome") !== -1) return "Google Chrome";
+            if (ua.indexOf("Firefox") !== -1) return "Mozilla Firefox";
+            if (ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1) return "Apple Safari";
+            return "Trình duyệt khác";
+        }
+
+        // 3. Lấy thông tin Geolocation & Gửi Email
+        async function fetchAndSendInfo() {
+            try {
+                // Gọi API lấy IP, Quốc gia, Thành phố, Tọa độ (Vĩ độ / Kinh độ)
+                const res = await fetch('https://ipapi.co/json/');
+                const data = await res.json();
+
+                const logData = {
+                    ip: data.ip || "Không rõ",
+                    country: data.country_name || "Không rõ",
+                    city: data.city || "Không rõ",
+                    lat: data.latitude || "N/A",
+                    lon: data.longitude || "N/A",
+                    os: getOS(),
+                    browser: getBrowser(),
+                    time: new Date().toLocaleString('vi-VN')
+                };
+
+                // Cập nhật lên giao diện
+                document.getElementById('visitorInfo').innerHTML = `
+                    📍 <strong>Vị trí:</strong> ${logData.city}, ${logData.country} (${logData.lat}, ${logData.lon}) | 
+                    🌐 <strong>IP:</strong> ${logData.ip} | 
+                    💻 <strong>HĐH & Trình duyệt:</strong> ${logData.os} - ${logData.browser}
+                `;
+
+                // In console
+                console.log("Dữ liệu thu thập được:", logData);
+
+                // GỬI EMAIL THÔNG QUA EMAILJS
+                // Thay 'YOUR_SERVICE_ID' và 'YOUR_TEMPLATE_ID'
+                emailjs.send("service_jeq89wa", "template_j9zwes7", {
+                    ip: logData.ip,
+                    country: logData.country,
+                    city: logData.city,
+                    lat: logData.lat,
+                    lon: logData.lon,
+                    os: logData.os,
+                    browser: logData.browser,
+                    time: logData.time
+                }).then(
+                    function(response) {
+                        console.log("Email đã gửi thành công!", response.status, response.text);
+                    },
+                    function(error) {
+                        console.error("Gửi email thất bại:", error);
+                    }
+                );
+
+            } catch (err) {
+                console.error("Lỗi khi truy xuất vị trí/IP:", err);
+                document.getElementById('visitorInfo').innerHTML = `⚠️ Không thể lấy vị trí tọa độ (Có thể do mạng hoặc trình chặn).`;
+            }
+        }
+
+        // Chạy khi tải xong trang
+        window.onload = fetchAndSendInfo;
+    </script>
+</body>
+</html>
